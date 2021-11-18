@@ -17,10 +17,24 @@ const perform = async (z, bundle) => {
     response.throwForStatus();
     const data = response.json;
 
-    // You can do any parsing you need for results here before returning them
-    z.console.log('hello');
+	var filtered_results = [];
+    // If we have a list of valid states, only include results that match them
+	if(typeof(bundle.inputData.state_inclusion) != "undefined")
+	{
+			for (const result of data.results)
+			{
+				if(bundle.inputData.state_inclusion[result.properties.hs_pipeline_stage] == 1)
+				{
+					filtered_results.push(result);
+				}
+			}
+	}
+	else
+	{	// pass all results through unfiltered
+		filtered_results = data.results;
+	}
 
-    return data.results;
+	return filtered_results;
   });
 };
 
