@@ -20,7 +20,7 @@ const perform = async (z, bundle) => {
     // You can do any parsing you need for results here before returning them
     z.console.log('hello');
 
-    return [data.results];
+    return data.results;
   });
 };
 
