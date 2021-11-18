@@ -47,7 +47,7 @@ module.exports = {
         label: 'Filter',
         type: 'text',
         helpText:
-          'See https://developers.hubspot.com/docs/api/crm/tickets, "search" endpoint. Make sure your filter is enclosed in [ ]',
+          'See the [HubSpot CRM API](https://developers.hubspot.com/docs/api/crm/tickets), "search" endpoint. Make sure your filter is enclosed in [ ]',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -80,7 +80,7 @@ module.exports = {
       archived: false,
     },
     outputFields: [
-      { key: 'id', label: 'ID', type: 'integer' },
+      { key: 'id', label: 'ID' },
       { key: 'properties__content', label: 'Description' },
       { key: 'properties__createdate', label: 'Create Date', type: 'datetime' },
       { key: 'properties__hs_pipeline', label: 'Pipeline' },
