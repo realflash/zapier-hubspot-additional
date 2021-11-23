@@ -34,7 +34,7 @@ const perform = async (z, bundle) => {
 		filtered_results = data.results;
 	}
 
-	return filtered_results;
+	return [{ results: filtered_results, count: filtered_results.length }];
   });
 };
 
