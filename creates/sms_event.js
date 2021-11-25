@@ -55,7 +55,7 @@ module.exports = {
         label: 'Tickets to update',
         children: [
 			{
-				key: 'ticketID',
+				key: 'id',
 				type: 'integer',
 				label: 'Ticket ID',
 				required: true,

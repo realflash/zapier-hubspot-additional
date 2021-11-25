@@ -15,7 +15,7 @@ describe('Create - log SMS received', () => {
       },
 
       inputData: {
-			tickets: [{"ticketID":"161391783"},{"ticketID":"161521798"}],
+			tickets: [{"id":"161391783"},{"id":"161521798"}],
 			from_phone: '07815142001',
 			to_phone: '07451280992',
 			event_type: 'received',
