@@ -11,7 +11,7 @@ describe('Create - log SMS received', () => {
   it('should get an array with more than 1 element', async () => {
     const bundle = {
       authData: {
-        access_token: process.env.ACCESS_TOKEN,
+        hapi_key: process.env.HUBSPOT_API_KEY,
       },
 
       inputData: {

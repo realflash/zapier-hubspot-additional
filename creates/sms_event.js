@@ -27,9 +27,8 @@ const perform = async (z, bundle) => {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${bundle.authData.access_token}`,			// presumably this will eventually work on its own when engagements API gets updated to v3
     },
-	params: { hapikey: bundle.authData.access_token },					// for v1 this is necessary
+	params: { hapikey: bundle.authData.hapi_key },					// v1 auth for engagements API is different to v3 auth for CRM API. Yay.
     body: engagement
   };
 
