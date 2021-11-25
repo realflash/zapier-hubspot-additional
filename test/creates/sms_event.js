@@ -19,6 +19,7 @@ describe('Create - log SMS received', () => {
 			from_phone: '07815142001',
 			to_phone: '07451280992',
 			event_type: 'received',
+			message: 'Test message',
 			time: Date.now(),
 		},
     };
@@ -28,7 +29,7 @@ describe('Create - log SMS received', () => {
       bundle
     );
     //~ console.log(response[0]);
-    response[0].modified_count.should.equal(2);
+    response.modified_count.should.equal(2);
   });
   
   

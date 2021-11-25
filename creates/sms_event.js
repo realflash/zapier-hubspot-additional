@@ -1,43 +1,49 @@
 const perform = async (z, bundle) => {
-  var engagement = {
+	var engagement = {
 	engagement: {
-        active: true,
-        ownerId: 851,
-        type: "CALL",
-        timestamp: bundle.inputData.time
-    },
-    associations: {
-        contactIds: [],
-        companyIds: [],
-        dealIds: [],
-        ownerIds: [],
+		active: true,
+		ownerId: 851,
+		type: "CALL",
+		timestamp: bundle.inputData.time
+	},
+	associations: {
+		contactIds: [],
+		companyIds: [],
+		dealIds: [],
+		ownerIds: [],
 		ticketIds:[bundle.inputData.tickets[0].ticketID]
-    },
-    metadata: {
-        toNumber: bundle.inputData.to_phone,
-        fromNumber: bundle.inputData.from_phone,
-        status: "COMPLETED",
-        durationMilliseconds: 1000,
-    }
-  }
-  console.log(bundle.inputData.tickets[0]);
-  const options = {
-    url: 'https://api.hubapi.com/engagements/v1/engagements',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
+	},
+	metadata: {
+		toNumber: bundle.inputData.to_phone,
+		fromNumber: bundle.inputData.from_phone,
+		status: "COMPLETED",
+		durationMilliseconds: 1000,
+		body: bundle.inputData.message
+	}
+	}
+	console.log(bundle.inputData.tickets[0]);
+	const options = {
+	url: 'https://api.hubapi.com/engagements/v1/engagements',
+	method: 'POST',
+	headers: {
+	  'Content-Type': 'application/json',
+	  Accept: 'application/json',
+	},
 	params: { hapikey: bundle.authData.hapi_key },					// v1 auth for engagements API is different to v3 auth for CRM API. Yay.
-    body: engagement
-  };
+	body: engagement
+	};
 
-  return z.request(options).then((response) => {
-    response.throwForStatus();
-    const data = response.json;
-
-	return [{ modified_count: 0 }];
-  });
+	const response = await z.request(options);
+	response.throwForStatus();
+	const data = response.json;
+	if(data.associationCreateFailures = [])
+	{
+		return { modified_count: 1 };
+	}
+	else
+	{
+		return { modified_count: 0 };
+	}
 };
 
 module.exports = {
@@ -59,6 +65,13 @@ module.exports = {
         list: false,
         altersDynamicFields: false,
 
+      },
+      {
+        key: 'message',
+        label: 'The content of the message that was sent or received',
+        type: 'string',
+        required: true,
+        altersDynamicFields: false,
       },
       {
         key: 'from_phone',
