@@ -7,11 +7,6 @@ const perform = async (z, bundle) => {
 			timestamp: bundle.inputData.time
 		},
 		associations: {
-			contactIds: [],
-			companyIds: [],
-			dealIds: [],
-			ownerIds: [],
-			ticketIds:[]
 		},
 		metadata: {
 			toNumber: bundle.inputData.to_phone,
