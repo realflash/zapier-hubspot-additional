@@ -1,5 +1,25 @@
 const perform = async (z, bundle) => {
-  var body = 
+  var engagement = {
+	engagement: {
+        active: true,
+        ownerId: 851,
+        type: "CALL",
+        timestamp: bundle.inputData.time
+    },
+    associations: {
+        contactIds: [],
+        companyIds: [],
+        dealIds: [],
+        ownerIds: [],
+		ticketIds:[bundle.inputData.tickets[0].ticketID]
+    },
+    metadata: {
+        toNumber: bundle.inputData.to_phone,
+        fromNumber: bundle.inputData.from_phone,
+        status: "COMPLETED",
+        durationMilliseconds: 1000,
+    }
+  }
   
   const options = {
     url: 'https://api.hubapi.com/engagements/v1/engagements',
@@ -10,28 +30,7 @@ const perform = async (z, bundle) => {
       Authorization: `Bearer ${bundle.authData.access_token}`,			// presumably this will eventually work on its own when engagements API gets updated to v3
     },
 	params: { hapikey: bundle.authData.access_token },					// for v1 this is necessary
-    body: 
-    '{
-		"engagement": {
-        "active": true,
-        "ownerId": 851,
-        "type": "CALL",
-        "timestamp": ' + bundle.inputData.time + '
-    },
-    "associations": {
-        "contactIds": [],
-        "companyIds": [],
-        "dealIds": [],
-        "ownerIds": [],
-		"ticketIds":['+ bundle.inputData.tickets[0].ticketID +']
-    },
-    "metadata": {
-        "toNumber": "' + bundle.inputData.to_phone + '",
-        "fromNumber": "' + bundle.inputData.from_phone + '",
-        "status": "COMPLETED",
-        "durationMilliseconds": 1000,
-    }
-    }',
+    body: engagement
   };
 
   return z.request(options).then((response) => {
