@@ -11,8 +11,6 @@ const perform = async (z, bundle) => {
 		metadata: {
 			toNumber: bundle.inputData.to_phone,
 			fromNumber: bundle.inputData.from_phone,
-			status: "COMPLETED",
-			disposition: "f240bbac-87c9-4f6e-bf70-924b57d47db7",
 			durationMilliseconds: 1000,
 			body: bundle.inputData.message
 		}
@@ -35,6 +33,20 @@ const perform = async (z, bundle) => {
 		ticket_ids.push(ticket.id);
 	}
 	engagement.associations.ticketIds = ticket_ids;
+	// Adjust the body content according to what happened.
+	switch(bundle.inputData.event_type) {
+		case "delivery_success":
+			engagement.metadata.status = "COMPLETED";
+			engagement.metadata.disposition = "f240bbac-87c9-4f6e-bf70-924b57d47db7";
+			break;
+		case "received":
+			engagement.metadata.status = "COMPLETED";
+			engagement.metadata.disposition = "f240bbac-87c9-4f6e-bf70-924b57d47db7";
+			break;
+		case "delivery_failure":
+			engagement.metadata.status = "FAILED";
+			break;
+	}
 	const response = await z.request(options);
 	response.throwForStatus();
 	const data = response.json;
