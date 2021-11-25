@@ -37,7 +37,7 @@ const perform = async (z, bundle) => {
 	var ticket_ids = [];											
 	for (const ticket of bundle.inputData.tickets)
 	{	// Zapier forces us to use an AoH as input. Convert to A
-		ticket_ids.push(ticket.ticketID);
+		ticket_ids.push(ticket.id);
 	}
 	engagement.associations.ticketIds = ticket_ids;
 	const response = await z.request(options);
