@@ -4,7 +4,6 @@ const perform = async (z, bundle) => {
 			active: true,
 			ownerId: 851,
 			type: "CALL",
-			timestamp: bundle.inputData.time
 		},
 		associations: {
 		},
@@ -47,6 +46,11 @@ const perform = async (z, bundle) => {
 			engagement.metadata.status = "FAILED";
 			break;
 	}
+	// Get the time the event ocurred
+	var dateTime = new Date(bundle.inputData.time);
+	engagement.engagement.timestamp = dateTime.getTime();
+
+	// Make the call
 	const response = await z.request(options);
 	response.throwForStatus();
 	const data = response.json;

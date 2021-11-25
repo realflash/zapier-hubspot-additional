@@ -1,3 +1,7 @@
+## 1.0.4
+
+* Add handling of ISO date time string as a time input format
+
 ## 1.0.3
 
 * Add SMS event handling
