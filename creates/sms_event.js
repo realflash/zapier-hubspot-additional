@@ -20,7 +20,7 @@ const perform = async (z, bundle) => {
         durationMilliseconds: 1000,
     }
   }
-  
+  console.log(bundle.inputData.tickets[0]);
   const options = {
     url: 'https://api.hubapi.com/engagements/v1/engagements',
     method: 'POST',
