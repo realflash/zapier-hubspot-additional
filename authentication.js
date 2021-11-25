@@ -1,5 +1,6 @@
 module.exports = {
   type: 'custom',
+  connectionLabel: bundle.inputData.hub_id,
   test: {
     url: 'https://api.hubapi.com/crm/v3/objects/tickets?limit=10&archived=false',
     method: 'GET',
@@ -9,6 +10,14 @@ module.exports = {
     removeMissingValuesFrom: {},
   },
   fields: [
+    {
+      computed: false,
+      key: 'hub_id',
+      required: true,
+      label: 'Hub ID',
+      type: 'string',
+      helpText: '',
+    },
     {
       computed: false,
       key: 'access_token',
