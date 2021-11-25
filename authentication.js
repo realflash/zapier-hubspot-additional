@@ -1,6 +1,6 @@
 module.exports = {
   type: 'custom',
-  connectionLabel: bundle.inputData.hub_id,
+  connectionLabel: '{{hub_id}}',
   test: {
     url: 'https://api.hubapi.com/crm/v3/objects/tickets?limit=10&archived=false',
     method: 'GET',
@@ -16,7 +16,7 @@ module.exports = {
       required: true,
       label: 'Hub ID',
       type: 'string',
-      helpText: '',
+      helpText: 'The ID of the Hub you want to connect to. First number in the URL you are redirected to after going to https://app.hubspot.com',
     },
     {
       computed: false,
