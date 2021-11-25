@@ -11,12 +11,13 @@ const perform = async (z, bundle) => {
 		companyIds: [],
 		dealIds: [],
 		ownerIds: [],
-		ticketIds:[bundle.inputData.tickets[0].ticketID]
+		ticketIds:[]
 	},
 	metadata: {
 		toNumber: bundle.inputData.to_phone,
 		fromNumber: bundle.inputData.from_phone,
 		status: "COMPLETED",
+		outcome: "CONNECTED",
 		durationMilliseconds: 1000,
 		body: bundle.inputData.message
 	}
@@ -33,17 +34,16 @@ const perform = async (z, bundle) => {
 	body: engagement
 	};
 
+	var ticket_ids = [];											
+	for (const ticket of bundle.inputData.tickets)
+	{	// Zapier forces us to use an AoH as input. Convert to A
+		ticket_ids.push(ticket.ticketID);
+	}
+	engagement.associations.ticketIds = ticket_ids;
 	const response = await z.request(options);
 	response.throwForStatus();
 	const data = response.json;
-	if(data.associationCreateFailures = [])
-	{
-		return { modified_count: 1 };
-	}
-	else
-	{
-		return { modified_count: 0 };
-	}
+	return { modified_count: bundle.inputData.tickets.length - data.associationCreateFailures.length };
 };
 
 module.exports = {
