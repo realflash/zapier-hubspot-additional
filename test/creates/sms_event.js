@@ -28,7 +28,7 @@ describe('Create - log SMS received using tickets retrieved by search and Date o
       App.creates['sms_event'].operation.perform,
       bundle
     );
-    //~ console.log(response[0]);
+    // console.log(response[0]);
     response.modified_count.should.equal(2);
   });
 });
@@ -56,7 +56,7 @@ describe('Create - log SMS received using tickets retrieved by search and ISO da
       App.creates['sms_event'].operation.perform,
       bundle
     );
-    //~ console.log(response[0]);
+    // console.log(response[0]);
     response.modified_count.should.equal(2);
   });
 });
@@ -84,7 +84,7 @@ describe('Create - log SMS sent successfully using tickets retrieved by search',
       App.creates['sms_event'].operation.perform,
       bundle
     );
-    console.log(response[0]);
+    // console.log(response[0]);
     response.modified_count.should.equal(2);
   });
 });
@@ -112,7 +112,7 @@ describe('Create - log SMS not sent successfully using tickets retrieved by sear
       App.creates['sms_event'].operation.perform,
       bundle
     );
-    console.log(response[0]);
+    // console.log(response[0]);
     response.modified_count.should.equal(2);
   });
 });

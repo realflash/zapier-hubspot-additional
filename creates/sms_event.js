@@ -27,14 +27,12 @@ const perform = async (z, bundle) => {
 	};
 
 	var ticket_ids = [];
-	z.console.log('Tickets input value: ');											
-	z.console.log(bundle.inputData.tickets);											
+	z.console.log('Tickets input value: ' + bundle.inputData.tickets);											
 	for (const ticket of bundle.inputData.tickets)
 	{	// Zapier forces us to use an AoH as input. Convert to A
 		ticket_ids.push(ticket.id);
 	}
-	z.console.log('Tickets IDs array: ');											
-	z.console.log(ticket_ids);											
+	z.console.log('Tickets IDs array: '+ ticket_ids);											
 	engagement.associations.ticketIds = ticket_ids;
 	// Adjust the body content according to what happened.
 	switch(bundle.inputData.event_type) {
@@ -53,11 +51,13 @@ const perform = async (z, bundle) => {
 	// Get the time the event ocurred
 	var dateTime = new Date(bundle.inputData.time);
 	engagement.engagement.timestamp = dateTime.getTime();
+	z.console.log('Engagement: ' + JSON.stringify(engagement, null, 4));											
 
 	// Make the call
 	const response = await z.request(options);
 	response.throwForStatus();
 	const data = response.json;
+	z.console.log('Response: ' + JSON.stringify(data, null, 4));											
 	return { modified_count: bundle.inputData.tickets.length - data.associationCreateFailures.length };
 };
 

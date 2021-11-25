@@ -1,3 +1,7 @@
+## 1.0.6
+
+* Add logging for submission and response
+
 ## 1.0.5
 
 * Add logging for ticket ID input
