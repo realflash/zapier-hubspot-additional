@@ -26,11 +26,15 @@ const perform = async (z, bundle) => {
 	body: engagement
 	};
 
-	var ticket_ids = [];											
+	var ticket_ids = [];
+	z.console.log('Tickets input value: ');											
+	z.console.log(bundle.inputData.tickets);											
 	for (const ticket of bundle.inputData.tickets)
 	{	// Zapier forces us to use an AoH as input. Convert to A
 		ticket_ids.push(ticket.id);
 	}
+	z.console.log('Tickets IDs array: ');											
+	z.console.log(ticket_ids);											
 	engagement.associations.ticketIds = ticket_ids;
 	// Adjust the body content according to what happened.
 	switch(bundle.inputData.event_type) {
