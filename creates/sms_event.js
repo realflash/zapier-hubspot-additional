@@ -1,26 +1,26 @@
 const perform = async (z, bundle) => {
 	var engagement = {
-	engagement: {
-		active: true,
-		ownerId: 851,
-		type: "CALL",
-		timestamp: bundle.inputData.time
-	},
-	associations: {
-		contactIds: [],
-		companyIds: [],
-		dealIds: [],
-		ownerIds: [],
-		ticketIds:[]
-	},
-	metadata: {
-		toNumber: bundle.inputData.to_phone,
-		fromNumber: bundle.inputData.from_phone,
-		status: "COMPLETED",
-		outcome: "CONNECTED",
-		durationMilliseconds: 1000,
-		body: bundle.inputData.message
-	}
+		engagement: {
+			active: true,
+			ownerId: 851,
+			type: "CALL",
+			timestamp: bundle.inputData.time
+		},
+		associations: {
+			contactIds: [],
+			companyIds: [],
+			dealIds: [],
+			ownerIds: [],
+			ticketIds:[]
+		},
+		metadata: {
+			toNumber: bundle.inputData.to_phone,
+			fromNumber: bundle.inputData.from_phone,
+			status: "COMPLETED",
+			disposition: "f240bbac-87c9-4f6e-bf70-924b57d47db7",
+			durationMilliseconds: 1000,
+			body: bundle.inputData.message
+		}
 	}
 	console.log(bundle.inputData.tickets[0]);
 	const options = {
