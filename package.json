@@ -1,7 +1,7 @@
 {
   "name": "hub-spot-additional",
-  "version": "1.0.1",
-  "description": "Additional searches that would take too many tasks to do individually",
+  "version": "1.0.3",
+  "description": "Additional actions that would take too many tasks to do individually",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive -t 10000"
